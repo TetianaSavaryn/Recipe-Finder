@@ -1,20 +1,36 @@
 /* ============ desktop view ============ */
-.container h3 {
-    font-family: 'Dosis', sans-serif;
-    font-weight: 700;
-    font-size: 1.2rem;
-}
 
-p {
+
+* {
+    text-decoration: none;
     font-family: 'Dosis', sans-serif;
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+}
+
+.container h1 {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 2em;
+}
+
+.container h2 {
+    font-family: 'Caveat', cursive;
+    font-weight: 300;
+    font-size: 1.6em;
+}
+
+.container h3 {
+    font-weight: 600;
+}
+
+.container h4 {
+    font-weight: 500;
 }
 
 .container a {
     text-decoration: none;
-    font-family: 'Dosis', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.1rem;
     color: #12682c;
 }
@@ -31,20 +47,14 @@ p {
 }
 
 #search {
-    margin: 150px 0;
+    margin: 200px 0;
     padding: 0 20%;
 }
 
 #search input:focus {
     border-color:#12682c;
-    outline:0;
+    outline: 0;
     box-shadow:0 0 0 .25rem rgba(13, 253, 101, 0.25);
-}
-
-h2 {
-    font-family: 'Caveat', cursive;
-    font-weight: 400;
-    font-size: 1.7em;
 }
 
 .result-item {
@@ -60,9 +70,19 @@ h2 {
 }
 
 .item-name h3 {
-    font-size: 1.4em;
     text-align: center;
-    padding: 5px 0;
+    padding: 10px 0 15px;
+    font-size: 2.6em;
+}
+
+.item-name h2,
+.instruction h2 {
+    margin: 20px 0 10px;
+    color: #12682c;
+}
+
+.item-name {
+    margin: 0 50px;
 }
 
 .item-photo img {
@@ -105,4 +125,5 @@ h2 {
 #footer .text-muted {
     text-align: center;
 }
+
 
