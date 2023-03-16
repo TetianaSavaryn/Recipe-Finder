@@ -1,4 +1,27 @@
 /* ============ desktop view ============ */
+.container h3 {
+    font-family: 'Dosis', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+p {
+    font-family: 'Dosis', sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+.container a {
+    text-decoration: none;
+    font-family: 'Dosis', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #12682c;
+}
+
+.container a:hover {
+    color: #fcb307;
+}
 
 #header a {
     font-size: 2em;
@@ -18,7 +41,7 @@
     box-shadow:0 0 0 .25rem rgba(13, 253, 101, 0.25);
 }
 
-.container h2 {
+h2 {
     font-family: 'Caveat', cursive;
     font-weight: 400;
     font-size: 1.7em;
@@ -33,16 +56,53 @@
 .result-item a {
     text-decoration: none;
     color: #232323;
+    position: relative;
 }
 
-.result-item-name h3 {
+.item-name h3 {
     font-size: 1.4em;
+    text-align: center;
+    padding: 5px 0;
 }
 
-.result-item-name h3:hover {
-    color: #f5b505;
-}
-
-.result-item-photo img {
+.item-photo img {
     width: 100%;
 }
+
+.overlayer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #12682c89;
+    color: #fff;
+    text-align: center;
+    padding: 45% 0;
+    visibility: hidden;
+    opacity: 0;
+    border-color:#12682c;
+    outline:0;
+    box-shadow:0 0 0 0rem #12682c89;
+}
+
+.result-item:hover .overlayer {
+    visibility: visible;
+    opacity: 1;
+}
+
+#footer {
+    background-color: #dedede;
+    margin-top: 40px;
+    padding-bottom: 40px;
+}
+
+#footer ul {
+    list-style-type: none;
+    margin-bottom: 50px;
+}
+
+#footer .text-muted {
+    text-align: center;
+}
+
