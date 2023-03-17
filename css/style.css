@@ -63,10 +63,19 @@
     margin-bottom: 20px;
 }
 
+.result-item h4 {
+    padding: 10px;
+    text-align: center;
+}
+
 .result-item a {
     text-decoration: none;
     color: #232323;
     position: relative;
+}
+
+.result-item a:hover {
+    color: #232323;
 }
 
 .item-name h3 {
@@ -95,15 +104,13 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: #12682c89;
+    background: #1a322283;
     color: #fff;
     text-align: center;
     padding: 45% 0;
     visibility: hidden;
     opacity: 0;
-    border-color:#12682c;
-    outline:0;
-    box-shadow:0 0 0 0rem #12682c89;
+    box-shadow:0 0 0 0.7rem #1a322283;
 }
 
 .result-item:hover .overlayer {
