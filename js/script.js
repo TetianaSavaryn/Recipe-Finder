@@ -1,12 +1,13 @@
 // search
 const searchBtn = document.getElementById('search-btn');
-//const resultItem = document.getElementById('result-item');
-const results = document.getElementById('results');
+const resultItem = document.getElementById('result-item');
+const recipes = document.getElementById('recipes');
+const searchText = document.getElementById('search-text');
 //const itemPhoto = document.getElementById('item-photo');
 //const itemName = document.getElementById('item-name');
 
 // event listeners
-searchBtn.addEventListener('click', getSearchResult());
+searchBtn.addEventListener('click', getSearchResult);
 
 
 //fetch test
@@ -26,23 +27,21 @@ fetchResults();
 
 // function get search results
 function getSearchResult(){
-    let searchInput = document.getElementById('search-input').value.trim();
+    let searchInput = "";
+    searchInput += document.getElementById('search-input').value.trim();
     //let searchUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=73b9a76fc83e4d16a1e485b15383fc9f&query=${searchInput}`;
     //let searchUrl1 = `https://api.spoonacular.com/recipes/complexSearch?apiKey=73b9a76fc83e4d16a1e485b15383fc9f&query=pasta`;
-    let searchUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=e6f5e7b827d24fd9a71f7ec3bdb3d5b7&query=pasta`;
+    let searchUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=e6f5e7b827d24fd9a71f7ec3bdb3d5b7&query=soup`;
     
-    
+    //console.log(fetch(searchUrl));
     fetch(searchUrl)
     .then(res => res.json())
     .then(data => {
         let html = "";
         if(data.results!=null) {
-            html += `<h2>Search results:</h2>`;
             data.results.forEach(
                 result => {
                 html += `
-                <div class="results" id="results">
-                        <div class="row">
                             <div class="result-item col" id="${result.id}">
                                 <a href="/recipe.html">
                                     <div class="overlayer">
@@ -57,16 +56,14 @@ function getSearchResult(){
                                 </a>
                             </div>
 
-                        </div>
-                    </div>
                 `;
             });
         } else {
             // if there's no results
             html = `<h2 style="text-align: center;">We couldn't find what you're looking for</h2>`
         }
-        
-        results.innerHTML = html;
+        searchText.innerHTML = "Search Results:"
+        recipes.innerHTML = html;
 
     })
     .catch(rejected => {
@@ -74,5 +71,6 @@ function getSearchResult(){
     })
 
 }
+getSearchResult();
 
 
