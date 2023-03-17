@@ -6,8 +6,18 @@ const searchText = document.getElementById('search-text');
 //const itemPhoto = document.getElementById('item-photo');
 //const itemName = document.getElementById('item-name');
 
-// event listeners
-searchBtn.addEventListener('click', getSearchResult);
+// search button event listener
+searchBtn.addEventListener('click', function(event){
+    event.preventDefault();
+    let searchInput = "";
+    searchInput += document.getElementById('search-input').value.trim();
+    //let searchUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=73b9a76fc83e4d16a1e485b15383fc9f&query=${searchInput}`;
+    //let searchUrl1 = `https://api.spoonacular.com/recipes/complexSearch?apiKey=73b9a76fc83e4d16a1e485b15383fc9f&query=pasta`;
+    let searchUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=e6f5e7b827d24fd9a71f7ec3bdb3d5b7&query=${searchInput}`;
+    
+    fetchResults(searchUrl);
+    
+});
 
 
 //fetch test
@@ -25,20 +35,12 @@ async function fetchResults(){
 fetchResults();
 */
 
-// function get search results
-function getSearchResult(){
-    let searchInput = "";
-    searchInput += document.getElementById('search-input').value.trim();
-    //let searchUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=73b9a76fc83e4d16a1e485b15383fc9f&query=${searchInput}`;
-    //let searchUrl1 = `https://api.spoonacular.com/recipes/complexSearch?apiKey=73b9a76fc83e4d16a1e485b15383fc9f&query=pasta`;
-    let searchUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=e6f5e7b827d24fd9a71f7ec3bdb3d5b7&query=soup`;
-    
-    //console.log(fetch(searchUrl));
+function fetchResults(searchUrl){
     fetch(searchUrl)
     .then(res => res.json())
     .then(data => {
         let html = "";
-        if(data.results!=null) {
+        if(data.results.length>0) {
             data.results.forEach(
                 result => {
                 html += `
@@ -48,7 +50,7 @@ function getSearchResult(){
                                         <h3>Read more</h3>
                                     </div>
                                     <div class="item-photo" id="item-photo">
-                                        <img src="${result.image}" alt="${result.title} photo">
+                                        <img src="${result.image}" alt="recipe photo">
                                     </div>
                                     <div class="item-name" id="item-name">
                                         <h4>${result.title}</h4>
@@ -69,8 +71,7 @@ function getSearchResult(){
     .catch(rejected => {
         console.log(rejected);//handle the error
     })
-
 }
-getSearchResult();
+
 
 
