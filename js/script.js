@@ -4,7 +4,7 @@ const recipes = document.getElementById('recipes');
 const searchText = document.getElementById('search-text');
 const pagination = document.getElementById('pagination');
 const spoonacularKey = 'd03cd93b0d084c33b7afdf33bb873cdd';
-const resultsPerPage = 6;
+const resultsPerPage = 5;
 let numberOfResults;
 //const itemPhoto = document.getElementById('item-photo');
 //const itemName = document.getElementById('item-name');
@@ -14,12 +14,17 @@ searchBtn.addEventListener('click', function(event){
     event.preventDefault();
     let searchInput = "";
     searchInput += document.getElementById('search-input').value.trim();
-    //let searchUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=73b9a76fc83e4d16a1e485b15383fc9f&query=${searchInput}`;
-    //let searchUrl1 = `https://api.spoonacular.com/recipes/complexSearch?apiKey=73b9a76fc83e4d16a1e485b15383fc9f&query=pasta`;
+    
+    //if the input was empty:
+    if (searchInput === '') {
+        recipes.innerHTML = "<h2 style='text-align: center;'>The search bar cannot be empty</h2>";
+        pagination.innerHTML = "";
+    } else {
+
     let searchUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchInput}`;
     
     fetchResults(searchUrl, 1); // call fetchResults with pageNumber = 1
-    
+    }
 });
 
 
@@ -49,12 +54,17 @@ function fetchResults(searchUrl, pageNumber){
     .then(data => {
         let html = "";
         numberOfResults = JSON.parse(data.totalResults);
+        // if the prompt is some random phrase
+        if(numberOfResults == 0) {
+            html = `<h2 style="text-align: center;">We couldn't find what you're looking for</h2>`
+        } else
+        // if the prompt is a key word
         if(data.results) {
             //console.log(numberOfResults);
             data.results.forEach(
                 result => {
                 html += `
-                            <div class="result-item col" id="${result.id}">
+                            <div class="result-item" id="${result.id}">
                                 <a href="/recipe.html">
                                     <div class="overlayer">
                                         <h3>Read more</h3>
