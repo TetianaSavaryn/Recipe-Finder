@@ -1,17 +1,19 @@
-// search
+// -- search --
 const searchBtn = document.getElementById('search-btn');
 const recipes = document.getElementById('recipes');
 const searchText = document.getElementById('search-text');
 const pagination = document.getElementById('pagination');
-const spoonacularKey = '73b9a76fc83e4d16a1e485b15383fc9f';
+const spoonacularKey = '71e4a356f7e44493bb3f45decfc5b3a7';
 const resultsPerPage = 6;
 let numberOfResults;
 const filterCuisine = document.getElementById('filterCuisine');
 let filters = {};
 
-window.onload = function(){
-    filterCuisine.style.display = "none";
-}
+
+if (location.pathname === '/') { //for index page only
+    window.onload = function(){
+        filterCuisine.style.display = "none";
+    }
 
 
 // search button event listener
@@ -28,7 +30,6 @@ searchBtn.addEventListener('click', function(event){
 
         // filter search
         // add event listeners to clicking checkboxes
-
         let checkboxes = document.querySelectorAll('.form-check-input');
         
         checkboxes.forEach(checkbox => {
@@ -52,6 +53,7 @@ searchBtn.addEventListener('click', function(event){
 
     }
 });
+}
 
 
 //fetch test
@@ -93,7 +95,7 @@ function fetchResults(searchUrl, pageNumber){
                 result => {
                 html += `
                             <div class="result-item" id="${result.id}">
-                                <a href="/recipe.html">
+                                <a href="/recipe.html" id="openRecipePage" onclick="showRecipe(${result.id})">
                                     <div class="overlayer">
                                         <h3>Read more</h3>
                                     </div>
@@ -153,4 +155,29 @@ function fetchResults(searchUrl, pageNumber){
     })
 
 }
+
+
+// -----recipe page------
+const openRecipePage = document.getElementById('openRecipePage');
+const recipePhoto = document.getElementById('recipe-photo');
+const title = document.getElementById('item-title');
+const summary = document.getElementById('summary');
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchRecipe(716429);
+  });
+
+function fetchRecipe(id){
+    fetch(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${spoonacularKey}`)
+    .then(response => response.json())
+    .then(data => {
+        recipePhoto.innerHTML = `<img src="${data.image}" alt="recipe photo">`;
+        title.innerHTML = `<h3>${data.title}</h3>`;
+        summary.innerHTML = `<p>${data.summary}</p>`
+    });
+}
+
+
+
+
 

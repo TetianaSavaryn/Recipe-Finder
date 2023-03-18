@@ -11,16 +11,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <!-- js -->
-    <script src="js/script.js"></script>
-    <script src="js/bootstrap.min.js"></script><script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script>
-        $(function(){
-            $('#header').load('../layout/header.html');
-            $('#footer').load('../layout/footer.html');
-        })
-    </script>
-
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,33 +22,40 @@
     <div id="header"></div>
 
     <!-- recipe -->
-    <div id="recipe">
+    <div>
         <div class="container">
 
             <!-- photo name description ingredients info -->
-            <div class="row"> 
-                <div class="item-photo col-5">
-                    <img src="img/rec.jpeg" alt="recipe photo">
+            <div class="row"  id="recipe"> 
+                <div class="item-photo col-5" id="recipe-photo">
+                    <!-- <img src="img/rec.jpeg" alt="recipe photo"> -->
                 </div>
-                <div class="item-name col">
-                    <h3>Item name</h3> <!--name-->
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia facere natus earum similique quas eum suscipit, quasi odit illum vitae, inventore laudantium voluptas tempora corrupti repudiandae fugiat at sed esse.</p>
+                <div class="item-name col" id="item-title">
+                    <!-- <h3>Item name</h3> -->
+                    <div id="summary">
+                    <!-- <p></p> -->
+                    </div>
+                    
                     <div class="ingredients col"> <!--ingredients-->
                         <h2>Ingredients</h2>
-                        <ul class="ingredient-name ingredient-measure">
-                             <li><p>ingredient - measure</p></li>
-                             <li><p>ingredient - measure</p></li>
-                             <li><p>ingredient - measure</p></li>
+                        <ul class="ingredient-name" id="ingredient-name">
+                             <li><p>ingredient</p></li>
                          </ul>
+                         <ul class="ingredient-measure" id="ingredient-measure">
+                            <li><p>measure</p></li>
+                        </ul>
                     </div>                        <!--end ingredients-->
                     <div class="health-info row"> <!--health info-->
                         <h2>Health Information</h2>
-                        <div class="col">
-                            <p>vegan</p>
+                        <div id="health-information">
+                            <div class="col">
+                                <p>vegan</p>
+                            </div>
+                            <div class="col">
+                                <p>dairy-free</p>
+                            </div>
                         </div>
-                        <div class="col">
-                            <p>dairy-free</p>
-                        </div>
+                        
                     </div>                       <!--end health info-->
                 </div>
             </div>
@@ -66,10 +63,9 @@
             
             <div class="instruction">           <!--cooking instructions-->
                 <h2>Cooking instructions</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic, officia quae blanditiis perferendis esse vitae quo, provident quidem ducimus culpa eligendi illum. Sit eveniet eligendi soluta veniam, nemo sunt quibusdam.</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic, officia quae blanditiis perferendis esse vitae quo, provident quidem ducimus culpa eligendi illum. Sit eveniet eligendi soluta veniam, nemo sunt quibusdam.</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic, officia quae blanditiis perferendis esse vitae quo, provident quidem ducimus culpa eligendi illum. Sit eveniet eligendi soluta veniam, nemo sunt quibusdam.</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic, officia quae blanditiis perferendis esse vitae quo, provident quidem ducimus culpa eligendi illum. Sit eveniet eligendi soluta veniam, nemo sunt quibusdam.</p>
+                <div id="instructions">
+                    <!-- <p></p> -->
+                </div>
             </div>                              <!--end cooking instructions-->
             
         </div>
@@ -77,6 +73,16 @@
 
     <!-- footer -->
     <div id="footer"></div>
+
+    <!-- js -->
+    <script src="js/script.js"></script>
+    <script src="js/bootstrap.min.js"></script><script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            $('#header').load('../layout/header.html');
+            $('#footer').load('../layout/footer.html');
+        })
+    </script>
     
 
 </body>
