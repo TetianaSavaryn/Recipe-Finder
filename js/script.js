@@ -3,12 +3,16 @@ const searchBtn = document.getElementById('search-btn');
 const recipes = document.getElementById('recipes');
 const searchText = document.getElementById('search-text');
 const pagination = document.getElementById('pagination');
-const spoonacularKey = 'd03cd93b0d084c33b7afdf33bb873cdd';
-const resultsPerPage = 5;
+const spoonacularKey = '73b9a76fc83e4d16a1e485b15383fc9f';
+const resultsPerPage = 6;
 let numberOfResults;
 const filterCuisine = document.getElementById('filterCuisine');
 
-filterCuisine.style.display = "block";
+window.onload = function(){
+    filterCuisine.style.display = "none";
+}
+
+
 // search button event listener
 searchBtn.addEventListener('click', function(event){
     event.preventDefault();
@@ -21,9 +25,31 @@ searchBtn.addEventListener('click', function(event){
         pagination.innerHTML = "";
     } else {
 
+        // filter search
+        // add event listeners to clicking checkboxes
+
+        let checkboxes = document.querySelectorAll('.form-check-input');
+        
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function(){
+                let url;
+                let urlSearchParams = new URLSearchParams(searchUrl.split('?')[1]);
+                
+                if (this.checked) {
+                    urlSearchParams.append('cuisine', this.id);
+                } else {
+                    urlSearchParams.delete('cuisine');
+                }
+                url = `${searchUrl.split('?')[0]}?${urlSearchParams.toString()}`;
+                fetchResults(url, 1);
+            });
+        });
+
+
     let searchUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchInput}`;
     
     fetchResults(searchUrl, 1); // call fetchResults with pageNumber = 1
+
     }
 });
 
@@ -47,7 +73,7 @@ function fetchResults(searchUrl, pageNumber){
     
     let offset = (pageNumber - 1) * resultsPerPage; // calculate the offset based on pageNumber
     let url = `${searchUrl}&offset=${offset}&number=${resultsPerPage}`; // limiting searchUrl to already paginated
-    
+    filterCuisine.style.display = "block";
 
     fetch(url)
     .then(res => res.json())
@@ -57,6 +83,8 @@ function fetchResults(searchUrl, pageNumber){
         // if the prompt is some random phrase
         if(numberOfResults == 0) {
             html = `<h2 style="text-align: center;">We couldn't find what you're looking for</h2>`
+            style.display = "none";
+            pagination.style.display = "none";
         } else
         // if the prompt is a key word(s)
         if(data.results) {
@@ -81,6 +109,7 @@ function fetchResults(searchUrl, pageNumber){
                 `;
             });
 
+            filterCuisine.style.display = "block"; //display the checkboxes
 
 
         // pagination links
@@ -109,13 +138,13 @@ function fetchResults(searchUrl, pageNumber){
         } else {
             // if there's no results
             html = `<h2 style="text-align: center;">We couldn't find what you're looking for</h2>`
+            
         }
 
         searchText.innerHTML = "Search Results:"
 
         recipes.innerHTML = html;
-
-        filterCuisine.style.display = "block";
+        console.log(searchUrl);
         
 
     })

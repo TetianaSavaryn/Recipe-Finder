@@ -137,5 +137,9 @@
     margin: 0px;
 }
 
+#pagination {
+    display:inline-flex;
+}
+
 
 
