@@ -6,9 +6,9 @@ const pagination = document.getElementById('pagination');
 const spoonacularKey = 'd03cd93b0d084c33b7afdf33bb873cdd';
 const resultsPerPage = 5;
 let numberOfResults;
-//const itemPhoto = document.getElementById('item-photo');
-//const itemName = document.getElementById('item-name');
+const filterCuisine = document.getElementById('filterCuisine');
 
+filterCuisine.style.display = "block";
 // search button event listener
 searchBtn.addEventListener('click', function(event){
     event.preventDefault();
@@ -46,7 +46,7 @@ fetchResults();
 function fetchResults(searchUrl, pageNumber){
     
     let offset = (pageNumber - 1) * resultsPerPage; // calculate the offset based on pageNumber
-    let url = `${searchUrl}&offset=${offset}&number=${resultsPerPage}`; // limiting searchUrl to paginated
+    let url = `${searchUrl}&offset=${offset}&number=${resultsPerPage}`; // limiting searchUrl to already paginated
     
 
     fetch(url)
@@ -58,7 +58,7 @@ function fetchResults(searchUrl, pageNumber){
         if(numberOfResults == 0) {
             html = `<h2 style="text-align: center;">We couldn't find what you're looking for</h2>`
         } else
-        // if the prompt is a key word
+        // if the prompt is a key word(s)
         if(data.results) {
             //console.log(numberOfResults);
             data.results.forEach(
@@ -106,21 +106,22 @@ function fetchResults(searchUrl, pageNumber){
             });
         });
 
-
-
         } else {
             // if there's no results
             html = `<h2 style="text-align: center;">We couldn't find what you're looking for</h2>`
         }
+
         searchText.innerHTML = "Search Results:"
+
         recipes.innerHTML = html;
+
+        filterCuisine.style.display = "block";
         
 
     })
     .catch(rejected => {
-        console.log(rejected);//handle the error
+        console.log(rejected);
     })
 
-    
 }
 
