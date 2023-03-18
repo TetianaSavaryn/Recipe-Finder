@@ -7,6 +7,7 @@ const spoonacularKey = '73b9a76fc83e4d16a1e485b15383fc9f';
 const resultsPerPage = 6;
 let numberOfResults;
 const filterCuisine = document.getElementById('filterCuisine');
+let filters = {};
 
 window.onload = function(){
     filterCuisine.style.display = "none";
@@ -32,15 +33,14 @@ searchBtn.addEventListener('click', function(event){
         
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', function(){
-                let url;
-                let urlSearchParams = new URLSearchParams(searchUrl.split('?')[1]);
-                
-                if (this.checked) {
-                    urlSearchParams.append('cuisine', this.id);
-                } else {
-                    urlSearchParams.delete('cuisine');
+                filters[checkbox.id] = checkbox.checked;
+                let searchParams = new URLSearchParams(); // create new URLSearchParams object
+                for (let key in filters) {
+                    if (filters[key]) {
+                        searchParams.append('cuisine', key); // add filter to search params
+                    }
                 }
-                url = `${searchUrl.split('?')[0]}?${urlSearchParams.toString()}`;
+                let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchInput}&${searchParams.toString()}`; // construct search URL with filters
                 fetchResults(url, 1);
             });
         });
