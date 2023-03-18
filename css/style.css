@@ -199,4 +199,11 @@
         box-ordinal-group: 3;
     }
 
+    #recipe-photo {
+        width: 100%;
+    }
+
+    .recipe-instructions {
+        padding: 0 10%;
+    }
 }
