@@ -145,5 +145,58 @@
     line-height: 1.1em;
 }
 
+/* ============ mobile view ============ */
 
+@media only screen and (max-width: 600px) {
 
+    #search {
+        margin: 200px 0;
+        padding: 0 5%;
+    }
+
+    .search-results div {
+        display: -webkit-box;
+        display: -moz-box;
+        display: box;
+        
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        box-orient: vertical;
+    }
+
+    .row-cols-2 div {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .recipes {
+        -webkit-box-ordinal-group: 1;
+        -moz-box-ordinal-group: 1;
+        box-ordinal-group: 1;
+    }
+
+    #recipes {
+        width: 100%;
+        text-align: center;
+        padding: 0 15%;
+    }
+
+    .item-photo {
+        width: 100%;
+    }
+
+    .filterCuisine {
+        -webkit-box-ordinal-group: 2;
+        -moz-box-ordinal-group: 2;
+        box-ordinal-group: 2;
+        padding: 10%;
+        width: 100%;
+    }
+
+    .pagination {
+        -webkit-box-ordinal-group: 3;
+        -moz-box-ordinal-group: 3;
+        box-ordinal-group: 3;
+    }
+
+}

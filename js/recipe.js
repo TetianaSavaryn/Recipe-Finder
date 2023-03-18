@@ -5,7 +5,7 @@ const title = document.getElementById('item-title');
 const ingredient = document.getElementById('ingredient-name');
 const health = document.getElementById('health-information');
 const instructions = document.getElementById('instructions');
-const spoonacularKey = '71e4a356f7e44493bb3f45decfc5b3a7';
+const spoonacularKey = '337bf0fe4f2949f1b5807bba385fdb43';
 
 const urlParams = new URLSearchParams(window.location.search);
 const recipeId = urlParams.get('id');

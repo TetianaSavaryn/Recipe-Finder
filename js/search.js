@@ -3,7 +3,7 @@ const searchBtn = document.getElementById('search-btn');
 const recipes = document.getElementById('recipes');
 const searchText = document.getElementById('search-text');
 const pagination = document.getElementById('pagination');
-const spoonacularKey = '71e4a356f7e44493bb3f45decfc5b3a7';
+const spoonacularKey = '337bf0fe4f2949f1b5807bba385fdb43';
 const resultsPerPage = 6;
 let numberOfResults;
 const filterCuisine = document.getElementById('filterCuisine');
