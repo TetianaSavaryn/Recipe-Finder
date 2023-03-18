@@ -141,5 +141,9 @@
     display:inline-flex;
 }
 
+#ingredients li {
+    line-height: 1em;
+}
+
 
 

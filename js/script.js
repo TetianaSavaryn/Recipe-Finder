@@ -161,7 +161,8 @@ function fetchResults(searchUrl, pageNumber){
 const openRecipePage = document.getElementById('openRecipePage');
 const recipePhoto = document.getElementById('recipe-photo');
 const title = document.getElementById('item-title');
-const summary = document.getElementById('summary');
+const ingredient = document.getElementById('ingredient-name');
+const health = document.getElementById('health-information');
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchRecipe(716429);
@@ -171,9 +172,56 @@ function fetchRecipe(id){
     fetch(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${spoonacularKey}`)
     .then(response => response.json())
     .then(data => {
+        let html="";
         recipePhoto.innerHTML = `<img src="${data.image}" alt="recipe photo">`;
         title.innerHTML = `<h3>${data.title}</h3>`;
-        summary.innerHTML = `<p>${data.summary}</p>`
+
+        //ingrediedients with measure
+        data.extendedIngredients.forEach(
+            ingredient => {
+                html += `
+                <li><p>${ingredient.name} - ${ingredient.amount} ${ingredient.unit}</p></li>
+            `;
+        });
+        ingredient.innerHTML = html;
+
+        //health ingormation
+        if((data.vegetarian == false) && (data.vegan == false) && (data.glutenFree == false) && (data.dairyFree == false) && (data.veryHealthy == false)) {
+            document.getElementById('health-info').style.display="none";
+        }
+
+        health.innerHTML = "";
+        if (data.vegetarian == true) {
+            health.innerHTML += `
+            <div class="col">
+                <p>vegetarian</p>
+            </div>`;
+        }
+        if (data.vegan == true) {
+            health.innerHTML += `
+            <div class="col">
+                <p>vegan</p>
+            </div>`;
+        }
+        if (data.glutenFree == true) {
+            health.innerHTML += `
+            <div class="col">
+                <p>gluten ree</p>
+            </div>`;
+        }
+        if (data.dairyFree == true) {
+            health.innerHTML += `
+            <div class="col">
+                <p>dairy free</p>
+            </div>`;
+        }
+        if (data.veryHealthy == true) {
+            health.innerHTML += `
+            <div class="col">
+                <p>very healthy</p>
+            </div>`;
+        }
+
     });
 }
 
